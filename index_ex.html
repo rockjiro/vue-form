@@ -6,61 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML5テンプレート</title>
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap-custom.css" type="text/css" />
 </head>
 <body>
     <div id="app">
         <div class="form-area">
             <form novalidate="true">
                 <div class="form-group">
-                    <label for="inputName">名前<span class="text-danger">※</span></label>
                     <input
                         v-model="name"
                         type="text" 
                         id="inputName"
                         class="form-control"
                         name="name"
-                        placeholder="例）Vue 太郎"
+                        placeholder="name"
                     >
                 </div>
                 <div class="form-group">
-                    <label for="inputUrl">URL</label>
                     <input
                         v-model="url"
                         type="url"
                         id="inputUrl"
                         class="form-control"
                         name="url"
-                        placeholder="例）https://dolphin-rokujiro.com"
+                        placeholder="URL"
                     >
                     <small class="text-danger" v-if="!$v.url.url">無効なURLです</small>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail">メールアドレス<span class="text-danger">※</span></label>
                     <input
                         v-model="email"
                         type="email"
                         id="inputEmail"
                         class="form-control"
                         name="email"
-                        placeholder="例）example@gmail.com"
+                        placeholder="e-mail"
                     >
                     <small class="text-danger" v-if="!$v.email.email">無効なメールアドレスです</small>
                 </div>
                 <div class="form-group">
-                    <label for="inputInquiry">お問い合わせ内容<span class="text-danger">※</span></label>
                     <textarea
                         v-model="inquiry"
                         id="inputInquiry"
                         class="form-control"
                         name="inquiry"
                         rows="5"
+                        placeholder="message"
                     ></textarea>
                 </div>
                 <button
                     :disabled="$v.$invalid"
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn"
+                    :class="{ 'btn-primary': !$v.$invalid, 'btn-danger': $v.$invalid }"
                 >
                     Submit
                 </button>
