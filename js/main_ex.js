@@ -7,7 +7,8 @@ var app = new Vue({
         name: '',
         url: '',
         email: '',
-        inquiry: ''
+        inquiry: '',
+        postReturn: []
     },
     //③validationsプロパティが有効になる
     validations: {
@@ -25,5 +26,25 @@ var app = new Vue({
         inquiry: {
             required: validators.required
         }
+    },
+    methods: {
+      postMessage: function(){
+        let params = new URLSearchParams();
+            params.append('contentId', "content");
+            params.append('catgoryCode', "category");
+            params.append('genreCode', "genre");
+            
+            axios.post('/test.php', params) // => 成功時
+            .then(function (response) {
+                // this.postReturn = response.data;
+                console.log(response.data);
+            })
+            .catch(function (error) { // => 失敗時
+                console.log("error");
+            })
+      }  
+    },
+    mounted: function(){
+        this.postMessage();
     }
 })
